@@ -1,13 +1,18 @@
 import {configureStore} from '@reduxjs/toolkit'
-import { carApi } from './services/car/car'
+import { baseApi } from './baseApi';
+import  authSlice  from './features/auth/authSlice';
+import  counterSlice  from './features/counter/counterSlice';
+import cartSlice from './features/cart/cartSlice'
 
 export const makeStore = () =>{
     return configureStore({
         reducer:{
-           [carApi.reducerPath]:carApi.reducer
-
+           [baseApi.reducerPath]:baseApi.reducer,
+            auth: authSlice,
+            counter: counterSlice,
+            cart : cartSlice
         },
-        middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(carApi.middleware),
+        middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(baseApi.middleware),
     });
 }
 

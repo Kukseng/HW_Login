@@ -8,7 +8,7 @@ export default function middleware(req: NextRequest){
     console.log("==> Next Response Pathname", req.nextUrl.pathname);
 
     // Get tokens from cookies
-    const refreshToken = req.cookies.get("refeshToken")?.value;
+    const refreshToken = req.cookies.get("refreshToken")?.value;
 
     // Check if user is logged in (has refresh token)
     const isLoggedIn = !!refreshToken;

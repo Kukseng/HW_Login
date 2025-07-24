@@ -31,9 +31,9 @@ export async function POST(request:NextRequest){
         console.log("the data after login: ",data);
             // set cookie 
         const cookieStore = cookies();
-        const cookieName = "refeshToken";
+        const cookieName = process.env.CAR_TOKEN_NAME || "refreshToken";
         const refreshToken = data.refresh_token;
-        const accessToken = data.access_token;
+       
 
         if(refreshToken){
             
@@ -46,19 +46,6 @@ export async function POST(request:NextRequest){
             secure: true
         })
         }
-
-        if(accessToken){
-                // set cookieName and refreshToken into cookie
-        (await cookieStore).set({
-            name:"accessToken",
-            value: accessToken,
-            sameSite: "lax",
-            httpOnly:  false ,
-            secure:false
-        })
-
-        }
-
     
         return NextResponse.json(data)
     }catch(error){
