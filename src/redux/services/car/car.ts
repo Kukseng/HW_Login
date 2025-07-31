@@ -7,12 +7,12 @@ export const carApi = baseApi.injectEndpoints({
         // get cars by using get method
         getCars: builder.query<CarResponseType[],{page:number, limit:number}>({
         query: ({page,limit})=> `cars?skip=${page}&limit=${limit}`,
-        providesTags:['Cars']
+        // providesTags:['Cars']
         }),
         // get car by id 
         getCarById: builder.query<CarResponseType,string>({
             query: (id) => `cars/${id}`,
-            providesTags:['Cars']
+            // providesTags:['Cars']
 
         }),
         // create car
@@ -22,7 +22,7 @@ export const carApi = baseApi.injectEndpoints({
                 method: "POST",
                 body: newCar
             }),
-            invalidatesTags: ['Cars']
+            // invalidatesTags: ['Cars']
     
         }),
         // update car 
@@ -32,7 +32,7 @@ export const carApi = baseApi.injectEndpoints({
                 method: "PUT",
                 body: updateCar
             }),
-            invalidatesTags:['Cars']
+            // invalidatesTags:['Cars']
         }),
         // delete car
          deleteCar: builder.mutation<CarResponseType, {id:string}>({
@@ -40,7 +40,7 @@ export const carApi = baseApi.injectEndpoints({
                 url: `cars/${id}`,
                 method: "DELETE"
             }),
-            invalidatesTags:['Cars']
+            // invalidatesTags:['Cars']
         })
     }),
     overrideExisting: true
