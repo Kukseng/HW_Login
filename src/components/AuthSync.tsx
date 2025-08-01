@@ -24,8 +24,8 @@ export default function AuthSync() {
       dispatch(
         loginSuccess({
           user: {
-            email: session.user?.email || "",
-            name: session.user?.name || "",
+            email: session.user?.email || "user@example.com",
+            name: session.user?.name || "Authenticated User",
             provider: "keycloak",
           },
           accessToken: session.access_token,

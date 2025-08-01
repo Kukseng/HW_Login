@@ -9,14 +9,14 @@ export default async function Home() {
   return (
     <div className="p-6">
       <AuthSync />
-      <h1 className="text-2xl font-bold mb-4">NextAuth + Redux Integration</h1>
+      <h1 className="mb-4 text-2xl font-bold">NextAuth + Redux Integration</h1>
 
       <AuthStatus />
 
       {!!session && (
         <div className="mt-4">
           <h3 className="font-bold">NextAuth Session:</h3>
-          <pre className="bg-black text-green-400 p-4 rounded text-sm overflow-auto">
+          <pre className="p-4 overflow-auto text-sm text-green-400 bg-black rounded">
             {JSON.stringify(session, null, 2)}
           </pre>
         </div>
