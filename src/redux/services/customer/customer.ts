@@ -90,6 +90,20 @@ export const customerApi = baseApi.injectEndpoints({
       query: (phoneNumber) => ({
         url: `/customers/${phoneNumber}`,
         method: "PUT",
+        body: { isActive: false },
+      }),
+      invalidatesTags: (result, error, phoneNumber) => [
+        "Customer",
+        { type: "Customer", id: phoneNumber },
+      ],
+    }),
+
+    // Enable customer by phone number
+    enableCustomer: builder.mutation<SingleCustomerResponse, string>({
+      query: (phoneNumber) => ({
+        url: `/customers/${phoneNumber}`,
+        method: "PUT",
+        body: { isActive: true },
       }),
       invalidatesTags: (result, error, phoneNumber) => [
         "Customer",
@@ -106,4 +120,5 @@ export const {
   useUpdateCustomerMutation,
   useDeleteCustomerMutation,
   useDisableCustomerMutation,
+  useEnableCustomerMutation,
 } = customerApi;

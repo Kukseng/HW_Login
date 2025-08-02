@@ -78,6 +78,32 @@ export const accountApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["Account"],
     }),
+
+    // Disable account
+    disableAccount: builder.mutation<SingleAccountResponse, string>({
+      query: (actNo) => ({
+        url: `/accounts/${actNo}`,
+        method: "PUT",
+        body: { isActive: false },
+      }),
+      invalidatesTags: (result, error, actNo) => [
+        "Account",
+        { type: "Account", id: actNo },
+      ],
+    }),
+
+    // Enable account
+    enableAccount: builder.mutation<SingleAccountResponse, string>({
+      query: (actNo) => ({
+        url: `/accounts/${actNo}`,
+        method: "PUT",
+        body: { isActive: true },
+      }),
+      invalidatesTags: (result, error, actNo) => [
+        "Account",
+        { type: "Account", id: actNo },
+      ],
+    }),
   }),
 });
 
@@ -87,4 +113,6 @@ export const {
   useCreateAccountMutation,
   useUpdateAccountMutation,
   useDeleteAccountMutation,
+  useDisableAccountMutation,
+  useEnableAccountMutation,
 } = accountApi;
